@@ -67,7 +67,7 @@ async def get_thumb(videoid):
                     await f.close()
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        circle = Image.open("AnonXMusic/assets/anonx.png")
+        circle = Image.open(f"AnonXMusic/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)
         
         image2 = image1.convert("RGBA")
@@ -77,7 +77,7 @@ async def get_thumb(videoid):
 
 image3 = changeImageSize(1280, 720, circle)
         image5 = image3.convert("RGBA")
-        Image.alpha_composite(background, image5).save(f"cache/temp{owner_id}.png")
+        Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
         image5.paste(image3, (50,70), mask = image3)
             image5.paste(circle, (0,0), mask = circle)
         
@@ -100,14 +100,6 @@ image3 = changeImageSize(1280, 720, circle)
             "ALMORTAGEL PLAYING",
             fill="white",
             stroke_width=2,
-            stroke_fill="white",
-            font=font2,
-        )
-        draw.text(
-            (36, 340),
-            f"cache/thumb{videoid}.png",
-            fill="white",
-            stroke_width=1,
             stroke_fill="white",
             font=font2,
         )
