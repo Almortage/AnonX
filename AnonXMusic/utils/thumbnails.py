@@ -96,8 +96,8 @@ async def get_thumb(videoid):
             font=font2,
         )
         draw.text(
-            (600, 340),
-            f"{line}",
+            (36, 340),
+            f"cache/{owner_id}.png",
             fill="white",
             stroke_width=1,
             stroke_fill="white",
