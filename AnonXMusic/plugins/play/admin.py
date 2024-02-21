@@ -75,7 +75,7 @@ async def list_admins(chat_id: int):
         "last_updated_at": time(),
         "data": [
             member.user.id
-            async for member in app.iter_chat_members(
+            async for member in app.get_chat_members(
                 chat_id, filter="administrators"
             )
         ],
@@ -93,7 +93,7 @@ async def admin_cache_func(_, cmu: ChatMemberUpdated):
             "last_updated_at": time(),
             "data": [
                 member.user.id
-                async for member in app.iter_chat_members(
+                async for member in app.get_chat_members(
                     cmu.chat.id, filter="administrators"
                 )
             ],
@@ -468,7 +468,7 @@ async def ban_deleted_accounts(_, message: Message):
     banned_users = 0
     m = await message.reply("Finding ghosts...")
 
-    async for i in app.iter_chat_members(chat_id):
+    async for i in app.get_chat_members(chat_id):
         if i.user.is_deleted:
             deleted_users.append(i.user.id)
     if len(deleted_users) > 0:
