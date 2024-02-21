@@ -84,12 +84,9 @@ async def get_thumb(videoid):
         logo = ImageOps.expand(logo, border=15, fill="white")
         background.paste(logo, (50, 100))
         draw = ImageDraw.Draw(background)
-        font = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 40)
-        font2 = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 70)
+        font = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
+        font2 = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
-        name_font = ImageFont.truetype("AnonXMusic/assets/font.ttf", 30)
-        para = textwrap.wrap(title, width=32)
-        j = 0
         draw.text(
             (600, 150),
             "ALMORTAGEL PLAYING",
@@ -98,28 +95,14 @@ async def get_thumb(videoid):
             stroke_fill="white",
             font=font2,
         )
-        for line in para:
-            if j == 1:
-                j += 1
-                draw.text(
-                    (600, 340),
-                    f"{line}",
-                    fill="white",
-                    stroke_width=1,
-                    stroke_fill="white",
-                    font=font,
-                )
-            if j == 0:
-                j += 1
-                draw.text(
-                    (600, 280),
-                    f"{line}",
-                    fill="white",
-                    stroke_width=1,
-                    stroke_fill="white",
-                    font=font,
-                )
-                
+        draw.text(
+            (600, 340),
+            f"{line}",
+            fill="white",
+            stroke_width=1,
+            stroke_fill="white",
+            font=font,
+        )
         draw.text(
             (600, 450),
             f"Views : {views[:23]}",
