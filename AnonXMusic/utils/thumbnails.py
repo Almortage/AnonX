@@ -67,12 +67,20 @@ async def get_thumb(videoid):
                     await f.close()
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
+        circle = Image.open("AnonXMusic/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)
         
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(30))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
+
+image3 = changeImageSize(1280, 720, circle)
+        image5 = image3.convert("RGBA")
+        Image.alpha_composite(background, image5).save(f"cache/temp{owner_id}.png")
+        image5.paste(image3, (50,70), mask = image3)
+            image5.paste(circle, (0,0), mask = circle)
+        
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
         x1 = Xcenter - 250
