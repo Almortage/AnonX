@@ -144,7 +144,7 @@ async def get_thumb(videoid):
             (255, 255, 255),
             font=arial,
         )
-                draw.text((1110, 8), unidecode(app.name), fill="white", font=arial)
+        draw.text((1110, 8), unidecode(app.name), fill="white", font=arial)
         draw.text(
             (55, 560),
             f"{channel} | {views[:23]}",
