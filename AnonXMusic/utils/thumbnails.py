@@ -79,7 +79,7 @@ async def get_thumb(videoid):
         image5 = image3.convert("RGBA")
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
         image5.paste(image3, (50,70), mask = image3)
-            image5.paste(circle, (0,0), mask = circle)
+        image5.paste(circle, (0,0), mask = circle)
         
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
