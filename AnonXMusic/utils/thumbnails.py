@@ -75,7 +75,7 @@ async def get_thumb(videoid):
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
 
-image3 = changeImageSize(1280, 720, circle)
+        image3 = changeImageSize(1280, 720, circle)
         image5 = image3.convert("RGBA")
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
         image5.paste(image3, (50,70), mask = image3)
