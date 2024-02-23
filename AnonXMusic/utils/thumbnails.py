@@ -90,7 +90,7 @@ async def get_thumb(videoid):
           else:
            ahmed = await client.get_chat("AnonXMusic/assets/anonx.png")
            ahmedphoto = ahmed.photo.big_file_id
-         elif message.chat.photo:
+          elif message.chat.photo:
           photo_id = message.chat.photo.big_file_id
           photo = await client.download_media(photo_id)
          else:
