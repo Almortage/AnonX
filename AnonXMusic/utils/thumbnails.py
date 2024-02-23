@@ -91,14 +91,13 @@ async def get_thumb(videoid):
            ahmed = await client.get_chat("AnonXMusic/assets/anonx.png")
            ahmedphoto = ahmed.photo.big_file_id
           elif message.chat.photo:
-          photo_id = message.chat.photo.big_file_id
-          photo = await client.download_media(photo_id)
-         else:
+           photo_id = message.chat.photo.big_file_id
+           photo = await client.download_media(photo_id)
+          else:
           ahmed = await client.get_chat("AnonXMusic/assets/anonx.png")
           ahmedphoto = ahmed.photo.big_file_id
           photo = await client.download_media(ahmedphoto)
-         photo = await gen_thumb(videoid, photo)
-        
+         photo = await get_thumb(videoid, photo)  
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
         x1 = Xcenter - 250
