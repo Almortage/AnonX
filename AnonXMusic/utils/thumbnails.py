@@ -27,7 +27,7 @@ def clear(text):
         if len(title) + len(i) < 60:
             title += " " + i
     return title.strip()
-         if message.from_user:
+        if message.from_user:
           if message.from_user.photo:
            photo_id = message.from_user.photo.big_file_id
            photo = await client.download_media(photo_id)
