@@ -87,10 +87,8 @@ async def get_thumb(videoid):
         draw.text(
             (600, 150),
             "ALMORTAGEL PLAYING",
-            fill="white",
-            stroke_width=2,
-            stroke_fill="white",
-            font=font2,
+            (255, 255, 255),
+            font=arial,
         )
         draw.text(
             (600, 200),
