@@ -85,7 +85,7 @@ async def get_thumb(videoid):
         font2 = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         draw.text(
-            (600, 150),
+            (600, 400),
             "ALMORTAGEL PLAYING",
             fill="white",
             stroke_width=2,
