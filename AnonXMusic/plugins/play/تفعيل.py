@@ -13,7 +13,7 @@ from pyrogram import filters, Client
 
 
 @app.on_message(filters.command(["تفعيل"], ""))
-def tom_owners(client, message):
+def tom_owners(client: Client, message: Message):
     chat_id = str(message.chat.id)
     Toom = message.from_user
     tom_owners = load_tom_owners()
