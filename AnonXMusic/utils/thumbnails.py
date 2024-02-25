@@ -27,6 +27,24 @@ def clear(text):
         if len(title) + len(i) < 60:
             title += " " + i
     return title.strip()
+         if message.from_user:
+          if message.from_user.photo:
+           photo_id = message.from_user.photo.big_file_id
+           photo = await client.download_media(photo_id)
+          elif message.chat.photo:
+           photo_id = message.chat.photo.big_file_id
+           photo = await client.download_media(photo_id)
+          else:
+           ahmed = await client.get_chat("")
+           ahmedphoto = ahmed.photo.big_file_id
+          elif message.chat.photo:
+           photo_id = message.chat.photo.big_file_id
+           photo = await client.download_media(photo_id)
+          else:
+          ahmed = await client.get_chat("")
+          ahmedphoto = ahmed.photo.big_file_id
+          photo = await client.download_media(ahmedphoto)
+         photo = await get_thumb(videoid, photo)  
 
 
 async def get_thumb(videoid):
@@ -80,24 +98,6 @@ async def get_thumb(videoid):
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
         image5.paste(image3, (50,70), mask = image3)
         image5.paste(circle, (0,0), mask = circle)
-        if message.from_user:
-          if message.from_user.photo:
-           photo_id = message.from_user.photo.big_file_id
-           photo = await client.download_media(photo_id)
-          elif message.chat.photo:
-           photo_id = message.chat.photo.big_file_id
-           photo = await client.download_media(photo_id)
-          else:
-           ahmed = await client.get_chat("AnonXMusic/assets/anonx.png")
-           ahmedphoto = ahmed.photo.big_file_id
-          elif message.chat.photo:
-           photo_id = message.chat.photo.big_file_id
-           photo = await client.download_media(photo_id)
-          else:
-          ahmed = await client.get_chat("AnonXMusic/assets/anonx.png")
-          ahmedphoto = ahmed.photo.big_file_id
-          photo = await client.download_media(ahmedphoto)
-         photo = await get_thumb(videoid, photo)  
         Xcenter = youtube.width / 2
         Ycenter = youtube.height / 2
         x1 = Xcenter - 250
