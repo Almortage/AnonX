@@ -26,24 +26,7 @@ def clear(text):
     for i in list:
         if len(title) + len(i) < 60:
             title += " " + i
-    return title.strip()
-        if message.from_user.photo:
-           photo_id = message.from_user.photo.big_file_id
-           photo = await client.download_media(photo_id)
-          elif message.chat.photo:
-           photo_id = message.chat.photo.big_file_id
-           photo = await client.download_media(photo_id)
-          else:
-           ahmed = await client.get_chat("")
-           ahmedphoto = ahmed.photo.big_file_id
-          elif message.chat.photo:
-           photo_id = message.chat.photo.big_file_id
-           photo = await client.download_media(photo_id)
-          else:
-          ahmed = await client.get_chat("")
-          ahmedphoto = ahmed.photo.big_file_id
-          photo = await client.download_media(ahmedphoto)
-         photo = await get_thumb(videoid, photo)  
+    return title.strip()  
 
 
 async def get_thumb(videoid):
