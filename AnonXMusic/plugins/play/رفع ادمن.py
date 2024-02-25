@@ -1,29 +1,16 @@
 import asyncio
-import random
-import json
-from pyrogram import Client, filters
-from pyrogram.enums import ChatMembersFilter
-from pyrogram import enums
-import json
+import os
+import time
+import requests
+import aiohttp
+from pyrogram import filters
+from pyrogram import Client
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, ReplyKeyboardMarkup
+from strings.filters import command
+from AnonXMusic import (Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app)
 from AnonXMusic import app
-from pyrogram.types import (InlineKeyboardButton,
-                            InlineKeyboardMarkup, Message)
-from pyrogram import filters, Client
-
-
-
-
-
-
-
-###########               #####                         ###                      ###
-      ###                   ##         ##                     ###  ##             ##  ###
-      ###                 ##             ##                   ###    ##         ##    ###
-      ###               ##                 ##                 ###      ##     ##      ###
-      ###                 ##             ##                   ###        ####         ###
-      ###                   ##        ##                      ###                       ###
-      ###                      #####                          ###                      ###
-
+from asyncio import gather
+from pyrogram.errors import FloodWait
 
 @app.on_message(filters.command(["رفع ادمن"], ""))
 def promote_admin(client, message):
@@ -92,7 +79,7 @@ def demote_admin(client, message):
             message.reply_text("لا يمكن العثور على المستخدم")
             return
     chat_id = str(message.chat.id)
-    
+
 
     tom_admin = load_tom_admin()
     if (not TOM(client, message, message) and not basic_dev(client, message, message) and not OWNER_ID(client, message, message) and not dev(client, message, message) and not is_basic_creator(client, message, message) and not owner(client, message, message) and not creator(client, message, message)):
@@ -135,7 +122,7 @@ def clear_admins(client, message):
 
 
 
-@app.on_message(filters.command("الادمنيه", ""))
+@app.on_message(filters.command(["الادمنيه"], ""))
 def get_admins(client, message):
     chat_id = str(message.chat.id)
     tom_admin = load_tom_admin()
@@ -154,18 +141,9 @@ def get_admins(client, message):
             if user:
                 admin_names.append(f"[{user.first_name}](tg://user?id={user.id})")
 
-        
+
         if admin_names:
             admin_list = "\n".join(admin_names)
             message.reply_text(f"◍ قائمة المشرفين:\n\n{admin_list}")
         else:
             message.reply_text("تعذر العثور على معلومات المشرفين")
-
-
-#############               #####                         ###                      ###
-      ###                   ##         ##                     ###  ##             ##  ###
-      ###                 ##             ##                   ###    ##         ##    ###
-      ###               ##                 ##                 ###      ##     ##      ###
-      ###                 ##             ##                   ###        ####         ###
-      ###                   ##        ##                      ###                       ###
-      ###                      #####                          ###                      ###
