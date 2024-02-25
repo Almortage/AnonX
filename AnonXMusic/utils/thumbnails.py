@@ -79,7 +79,7 @@ async def get_thumb(videoid):
         image5 = image3.convert("RGBA")
         Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
         image5.paste(image3, (50,70), mask = image3)
-        image5.paste(circle, (50,70), mask = circle)
+        image5.paste(circle, (0,0), mask = circle)
         draw = ImageDraw.Draw(background)
         font = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         font2 = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
@@ -87,8 +87,10 @@ async def get_thumb(videoid):
         draw.text(
             (600, 150),
             "ALMORTAGEL PLAYING",
-            (255, 255, 255),
-            font=arial,
+            fill="white",
+            stroke_width=2,
+            stroke_fill="white",
+            font=font2,
         )
         draw.text(
             (600, 200),
