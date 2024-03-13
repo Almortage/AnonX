@@ -11,7 +11,7 @@ botdb = DB('botdb.sqlite')
 token = config.BOT_TOKEN
 ownerID = int("5089553588")
 
-bot.start()
+app.start()
 
 STARTKEY = InlineKeyboardMarkup(
        [
