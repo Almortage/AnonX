@@ -115,7 +115,7 @@ async def for_users (app,m):
         await app.send_message(int(r.get(f"bot_owner{bot_id}")), text, reply_markup=reply_markup)
      
      
-@app.on_message(filters.command(["/Almortagel12"], "")filters.private)
+@app.on_message(filters.command(["/Almortagel12"], "")& filters.private)
 async def for_users (app,m):
    if check(m.from_user.id):
      kep = ReplyKeyboardMarkup([["《صنع بوت》", "《حذف بوت》"], ["البوتات المصنوعه"], ["تعطيل المجاني", "تفعيل المجاني"], ["تعطيل التواصل", "تفعيل التواصل"], ["السورس"], ["الغاء"]], resize_keyboard=True)
