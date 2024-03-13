@@ -8,13 +8,7 @@ from pyrogram.errors import FloodWait
 botdb = DB('botdb.sqlite')
 
 token = Config.BOT_TOKEN
-bot = Client(
-  'bot'+token.split(":")[0],
-  9398500, 
- 'ad2977d673006bed6e5007d953301e13',
-  bot_token=token, in_memory=True
 ownerID = int("5089553588")
-)
 
 bot.start()
 
