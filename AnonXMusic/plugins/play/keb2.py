@@ -5,7 +5,6 @@ from pyrogram import *
 from dotenv import load_dotenv
 from os import getenv
 from AnonXMusic import app
-from pyrogram import filters
 from pyrogram import Client, filters
 from pyrogram.types import *
 from pyrogram.errors import PeerIdInvalid
@@ -49,7 +48,7 @@ Keyboard = ReplyKeyboardMarkup(
   resize_keyboard=True
 )
 
-@app.on_message(filters.command(["/start"], "")& filters.privet)
+@app.on_message(filters.command(["/start"], "") & filters.privet)
 async def for_users (app,m):
    if check(m.from_user.id):
      kep = ReplyKeyboardMarkup([["《صنع بوت》", "《حذف بوت》"], ["البوتات المصنوعه"], ["تعطيل المجاني", "تفعيل المجاني"], ["تعطيل التواصل", "تفعيل التواصل"], ["السورس"], ["الغاء"]], resize_keyboard=True)
@@ -116,7 +115,7 @@ async def for_users (app,m):
         await app.send_message(int(r.get(f"bot_owner{bot_id}")), text, reply_markup=reply_markup)
      
      
-@app.on_message(filters.command(["/Almortagel12"], "")& filters.private)
+@app.on_message(filters.command(["/Almortagel12"], "") & filters.private)
 async def for_users (app,m):
    if check(m.from_user.id):
      kep = ReplyKeyboardMarkup([["《صنع بوت》", "《حذف بوت》"], ["البوتات المصنوعه"], ["تعطيل المجاني", "تفعيل المجاني"], ["تعطيل التواصل", "تفعيل التواصل"], ["السورس"], ["الغاء"]], resize_keyboard=True)
