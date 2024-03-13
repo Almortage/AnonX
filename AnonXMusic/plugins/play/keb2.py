@@ -49,7 +49,7 @@ if not ownerID in botdb.get("db"+token.split(":")[0])["admins"]:
    data["admins"].append(ownerID)
    botdb.set("db"+token.split(":")[0], data)
 
-@app.on_message(filters.command(["كيب"]"") & filters.private)
+@app.on_message(filters.command(["كيب"] "") &filters.private)
 async def on_start(c,m):
    getDB = botdb.get("db"+token.split(":")[0])
    if m.from_user.id in getDB["banned"]:
