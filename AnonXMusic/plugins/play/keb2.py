@@ -5,6 +5,7 @@ from pyrogram import *
 from dotenv import load_dotenv
 from os import getenv
 from AnonXMusic import app
+from pyrogram import filters
 from pyrogram import Client, filters
 from pyrogram.types import *
 from pyrogram.errors import PeerIdInvalid
