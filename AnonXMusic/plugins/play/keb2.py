@@ -4,6 +4,7 @@ from pyrogram import Client, filters, idle
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, BotCommand
 from kvsqlite.sync import Client as DB
 from datetime import date
+from AnonXMusic import app
 from pyrogram.errors import FloodWait 
 botdb = DB('botdb.sqlite')
 
@@ -48,7 +49,7 @@ if not ownerID in botdb.get("db"+token.split(":")[0])["admins"]:
    data["admins"].append(ownerID)
    botdb.set("db"+token.split(":")[0], data)
 
-@bot.on_message(filters.command(["كيب"]"") & filters.private)
+@app.on_message(filters.command(["كيب"]"") & filters.private)
 async def on_start(c,m):
    getDB = botdb.get("db"+token.split(":")[0])
    if m.from_user.id in getDB["banned"]:
@@ -72,7 +73,7 @@ async def on_start(c,m):
    botdb.set(f"USER:{m.from_user.id}",data)
 
 
-@bot.on_message(filters.private & ~filters.service)
+@app.on_message(filters.private & ~filters.service)
 async def on_messages(c,m):       
    if botdb.get(f"broad:{m.from_user.id}") and (m.from_user.id == ownerID or m.from_user.id in botdb.get("db"+token.split(":")[0])["admins"]):
       botdb.delete(f"broad:{m.from_user.id}")
@@ -239,7 +240,7 @@ async def on_messages(c,m):
           botdb.set("db"+token.split(":")[0],data)
           return await m.reply(text,quote=True)
 
-@bot.on_callback_query()
+@app.on_callback_query()
 async def on_Callback(c,m):      
    if m.data == "broadcast" and (m.from_user.id == ownerID or m.from_user.id in botdb.get("db"+token.split(":")[0])["admins"]):
       await m.edit_message_text("• أرسل الإذاعة الآن ( صورة ، نص ، ملصق ، ملف ، صوت )\n• للإلغاء ارسل الغاء ",reply_markup=InlineKeyboardMarkup ([[InlineKeyboardButton ("رجوع",callback_data="back")]]))
