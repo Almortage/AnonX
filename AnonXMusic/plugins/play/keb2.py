@@ -1,4 +1,5 @@
 import asyncio
+import config
 from pyrogram import Client, filters, idle
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, BotCommand
 from kvsqlite.sync import Client as DB
@@ -7,7 +8,7 @@ from AnonXMusic import app
 from pyrogram.errors import FloodWait 
 botdb = DB('botdb.sqlite')
 
-token = Config.BOT_TOKEN
+token = config.BOT_TOKEN
 ownerID = int("5089553588")
 
 bot.start()
