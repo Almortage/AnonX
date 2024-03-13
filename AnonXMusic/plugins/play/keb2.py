@@ -48,7 +48,7 @@ Keyboard = ReplyKeyboardMarkup(
   resize_keyboard=True
 )
 
-@app.on_message(filters.command(["/start"], "")filters.privet)
+@app.on_message(filters.command(["/start"], "")& filters.privet)
 async def for_users (app,m):
    if check(m.from_user.id):
      kep = ReplyKeyboardMarkup([["《صنع بوت》", "《حذف بوت》"], ["البوتات المصنوعه"], ["تعطيل المجاني", "تفعيل المجاني"], ["تعطيل التواصل", "تفعيل التواصل"], ["السورس"], ["الغاء"]], resize_keyboard=True)
