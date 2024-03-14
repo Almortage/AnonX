@@ -1,8 +1,3 @@
-'''
-@Y88F8
-@DevZaid
-'''
-
 import asyncio
 from config import OWNER_ID
 import redis, re
@@ -683,7 +678,7 @@ def get_groups_backup() -> str:
 
 	if not r.get(f"bot_owner{bot_id}"):
 	   owner = int(input("Enter owner id : "))
-       r.set(f"bot_owner{bot_id}", owner)
+        r.set(f"bot_owner{bot_id}", owner)
 
 '''
 @Y88F8
