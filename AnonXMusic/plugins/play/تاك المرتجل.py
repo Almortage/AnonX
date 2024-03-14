@@ -38,7 +38,7 @@ async def vgdg(client: Client, message: Message):
         
 
 array = []
-@app.on_message(filters.command(["@all", "تاك","تاك للكل"],"") & filters.group)
+@app.on_message(filters.command(["@all", "تاك","تاك للكل"], ""))
 async def nummmm(client: app, message):
   if message.chat.id in array:
      return await message.reply_text("**التاك قيد التشغيل حالياً ،**")
@@ -59,24 +59,24 @@ async def nummmm(client: app, message):
   except:
     pass
   array.append(message.chat.id)
-  async for x in client.iter_chat_members(message.chat.id):
+  async for x in cliget.get_chat_members(message.chat.id):
       if message.chat.id not in array:
         return
       if not x.user.is_deleted:
        i += 1
-       txt += f" {x.user.mention} ،"
-       if i == 5:
+       txt += f" ❤️‍🔥❤️‍🔥{x.user.mention} ،"
+       if i == 30:
         try:
               if not message.photo:
                     await client.send_message(message.chat.id, f"{zz}\n{txt}")
               else:
                     await client.send_photo(message.chat.id, photo=photo, caption=f"{zz}\n{txt}")
               i = 0
-              txt = ""
-              await asyncio.sleep(2)
+              txt = "⋖━━❲𖣂❳━━●○ᴀʟᴍᴏʀᴛᴀɢᴇʟ○●━━❲𖣂❳━━⋗"
+              await asyncio.sleep(3)
         except FloodWait as e:
                     flood_time = int(e.x)
-                    if flood_time > 200:
+                    if flood_time > 500:
                         continue
                     await asyncio.sleep(flood_time)
         except Exception:
@@ -84,7 +84,7 @@ async def nummmm(client: app, message):
   array.remove(message.chat.id)
 
 
-@app.on_message(filters.command(["بس المنشن", "/cancel","بس منشن"], "") & filters.group)
+@app.on_message(filters.command(["بس المنشن", "/cancel","بس منشن"], ""))
 async def stop(client, message):
   chek = await client.get_chat_member(message.chat.id, message.from_user.id)
   if not chek.status in ["administrator", "creator"]:
@@ -97,3 +97,4 @@ async def stop(client, message):
     array.remove(message.chat.id)
     await message.reply("**تم ايقاف المنشن بنجاح✅**")
     return
+
