@@ -38,7 +38,7 @@ async def vgdg(client: Client, message: Message):
         
 
 array = []
-@app.on_message(filters.command(["@all", "تاك","تاك للكل"],""))
+@app.on_message(filters.command(["@all", "تاك","تاك للكل"],"") & filters.group)
 async def nummmm(client: app, message):
   if message.chat.id in array:
      return await message.reply_text("**التاك قيد التشغيل حالياً ،**")
@@ -84,7 +84,7 @@ async def nummmm(client: app, message):
   array.remove(message.chat.id)
 
 
-@app.on_message(filters.command(["بس المنشن", "/cancel","بس منشن"], ""))
+@app.on_message(filters.command(["بس المنشن", "/cancel","بس منشن"], "") & filters.group)
 async def stop(client, message):
   chek = await client.get_chat_member(message.chat.id, message.from_user.id)
   if not chek.status in ["administrator", "creator"]:
