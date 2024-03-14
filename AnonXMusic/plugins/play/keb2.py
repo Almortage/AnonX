@@ -1,19 +1,24 @@
-import asyncio
-from config import OWNER_ID
+'''
+@Y88F8
+@DevZaid
+'''
+
 import redis, re
 from pyrogram import *
-from dotenv import load_dotenv
-from os import getenv
-from AnonXMusic import app
-from pyrogram import Client, filters
 from pyrogram.types import *
 from pyrogram.errors import PeerIdInvalid
 
-
+TOKEN = '_____'
+app = Client("remymbot",
+  api_id=9398500, api_hash="ad2977d673006bed6e5007d953301e13",
+  bot_token=TOKEN, 
+)
 bot_id = app.bot_token.split(":")[0]
 
-# Get ur redis url from https://app.redislabs.com/
-r = redis.from_url('redis://')
+# create a Redis client
+r = redis.Redis(
+    host="127.0.0.1",
+    port=6379,)
 
 Keyboard = ReplyKeyboardMarkup(
   [
@@ -36,7 +41,7 @@ Keyboard = ReplyKeyboardMarkup(
   resize_keyboard=True
 )
 
-@app.on_message(filters.command("Almortagel12") & filters.private)
+@app.on_message(filters.command("start") & filters.private)
 async def for_users (app,m):
    if not check(m.from_user.id):
      await check_sub(app, m)
@@ -63,7 +68,7 @@ async def for_users (app,m):
         
      
    
-@app.on_message(filters.command("Almortagel12") & filters.private, group=1)
+@app.on_message(filters.command("start") & filters.private, group=1)
 async def keyboard_show(app,m):
     if check(m.from_user.id):
        await m.reply(f"• أهلا بك {m.from_user.mention} .\n• اليك لوحة التحكم الخاصة", reply_markup=Keyboard, quote=True)
@@ -227,7 +232,7 @@ async def keyboard_for_admins(app, m):
         r.delete(f"{m.from_user.id}addchannel{m.chat.id}{bot_id}")
       
       if m.text == 'اخفاء الكيبورد':
-        await m.reply("• تم اخفاء لوحة التحكم لاظهارها مجدداً ارسل /Almortagel12",
+        await m.reply("• تم اخفاء لوحة التحكم لاظهارها مجدداً ارسل /start",
         quote=True, reply_markup=ReplyKeyboardRemove (selective=True))
 
 
@@ -675,14 +680,6 @@ def get_groups_backup() -> str:
 	with open('groups.txt', 'w+') as f:
 		f.write(text)
 	return 'groups.txt'
-
 	if not r.get(f"bot_owner{bot_id}"):
-	   owner = int(input("Enter owner id : "))
-    r.set(f"bot_owner{bot_id}", owner)
-
-'''
-@Y88F8
-@DevZaid
-'''
-
-
+       owner = int(input("Enter owner id : "))
+       r.set(f"bot_owner{bot_id}", owner)
