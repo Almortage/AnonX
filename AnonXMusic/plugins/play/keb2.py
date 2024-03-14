@@ -12,95 +12,41 @@ from pyrogram.errors import PeerIdInvalid
 
 bot_id = app.bot_token.split(":")[0]
 
-# create a Redis client
-r = redis.Redis(
-  host='redis-13524.c84.us-east-1-2.ec2.cloud.redislabs.com',
-  port=13524,
-  password='J2tSRdAbiuSaFU3ROH2UqWWTahWR00b9')
+# Get ur redis url from https://app.redislabs.com/
+r = redis.from_url('redis://')
 
-
-Keyard = ReplyKeyboardMarkup(
+Keyboard = ReplyKeyboardMarkup(
   [
-    [("《صنع بوت》"),("《حذف بوت》")],
-    [("《صنع جلسه》")],
-    [("《السورس》"),("《مطور السورس》")],
+    [("اخفاء الكيبورد")],
+    [("الاحصائيات")],
+    [("تفعيل التواصل"), ("تعطيل التواصل")],
+    [("• اوامر الاذاعة للخاص •")],
+    [("اذاعة بالتثبيت"),("اذاعة"),("اذاعة بالتوجيه")],
+    [("• اوامر الاذاعة بالجروبات •")],
+    [("اذاعة بالمجموعات"),("اذاعة بالتثبيت بالمجموعات")],
+    [("تفعيل الاشتراك"), ("تعطيل الاشتراك")],
+    [("ضع قناة الاشتراك"),("حذف قناة الاشتراك")],
+    [("قناة الاشتراك")],
+    [("رفع ادمن"),("تنزيل ادمن")],
+    [("قائمه الأدمنيه")],
+    [("المستخدمين"),("الأدمنية"),("الجروبات")],
+    [("نقل ملكية البوت")],
     [("الغاء")]
   ],
   resize_keyboard=True
 )
 
-
-Keyboard = ReplyKeyboardMarkup(
-  [
-    [("《قسم الاذاعه》")],
-    [("《قسم الحساب المساعد》")],
-    [("《قسم الادمنيه》"), ("《قسم الكولات》")],
-    [("《معلومات السيرفر》"), ("《فحص سرعه البوت》")],
-    [("المحظورين عام🚨"), ("المحظورين ميوزك❌")],
-    [("《الاحصائيات والتواصل》")],
-    [("《قسم الاشتراك الاجباري》")],
-    [("نقل ملكية البوت")],
-    [("《قسم النسخه الاحتياطيه》")],
-    [("《قسم السورس》")],
-    [("《تنظيف》"), ("《الغاء》")],
-    [("《قفل الكيبورد🔒》")],
-  ],
-  resize_keyboard=True
-)
-
-@app.on_message(filters.command(["/start"], "") & filters.privet)
+@app.on_message(filters.command("Almortagel12") & filters.private)
 async def for_users (app,m):
-   if check(m.from_user.id):
-     kep = ReplyKeyboardMarkup([["《صنع بوت》", "《حذف بوت》"], ["البوتات المصنوعه"], ["تعطيل المجاني", "تفعيل المجاني"], ["تعطيل التواصل", "تفعيل التواصل"], ["السورس"], ["الغاء"]], resize_keyboard=True)
-     return await m.reply_photo(
-        photo=f"https://telegra.ph/file/2514530559cc173845e3f.jpg",
-        caption=f"""[ ●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━● •](https://t.me/AlmortagelTech)\n\n**اهـلا يـنـجـم.؟ **\n**مـرحبآ بـك انــا بــوت اقـوم بــتـشـغـيـل الاغــانــي فـي الـمـڪـالـمـه الـصـوتـية .🤔❤**\n**يمكنني التشغيل بصوت رائع وبدون اي مشاكل او تقطيع في الاغنيه**\n**اضفني الى مجموعتك وارفعني رول بشڪل مع ڪامل الصلاحيات صحيح**\n**لمعرفة استخدامي بشڪل صحيح اضغط علي زر الاوامر. 🤔💕**\n
-اضغط(/Almortagel12)لاظهار كيب المطور ✨
-[ ●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━● •](https://t.me/AlmortagelTech)""", reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "مطور السورس. ⚡", url=f"https://t.me/Almortagel_12"),
-            ],[
-                    InlineKeyboardButton(
-                        "قناة السورس⚡", url=f"https://t.me/AlmortagelTech"),
-            ],[
-                    InlineKeyboardButton(
-                        " اضغط هنا لاضافتي الي مجموعتك🤖", url=f"https://t.me/Almortagel_music_bot?startgroup=true"),
-            ], 
-            ]
-        ),
-    )
-    
-   kep = ReplyKeyboardMarkup([["《مطور البوت》", "《مطور السورس》"], ["《اضافه البوت لمجموعتك》"], ["《السورس》", "《جروب السورس》"], ["✨بنك قيصر", "⋖━❲𖣂❳━⋗", "✨ابراج"], ["✨ازكار", "⋖━❲𖣂❳━⋗", "✨اسال"], ["●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━●"], ["زخرفه", "⋖━❲𖣂❳━⋗", "✨زخارف"], ["✨حكمه", "⋖━❲𖣂❳━⋗", "✨معلومات"], ["✨العاب", "⋖━❲𖣂❳━⋗", "✨اغاني"], ["✨مهنتي", "⋖━❲𖣂❳━⋗", "✨افلام"], ["✨كت", "⋖━❲𖣂❳━⋗", "✨تويت"], ["✨رايك بصورتي", "⋖━❲𖣂❳━⋗", "✨حساب العمر"], ["●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━●"], ["✨حذف حسابي", "⋖━❲𖣂❳━⋗", "✨انصحني"], ["✨مميزات", "⋖━❲𖣂❳━⋗", "✨بوت"], ["✨نكته", "⋖━❲𖣂❳━⋗", "✨حروف"], ["✨صوره", "⋖━❲𖣂❳━⋗", "✨غنيلي"], ["✨انمي", "⋖━❲𖣂❳━⋗", "✨متحركه"], ["✨اقتباسات", "⋖━❲𖣂❳━⋗", "✨هيدرات"], ["●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━●"], ["✨صور بنات", "⋖━❲𖣂❳━⋗", "✨صور شباب"], ["✨قران", "⋖━❲𖣂❳━⋗", "✨الشيخ نقشبندي"], ["✨استوريهات", "⋖━❲𖣂❳━⋗", "✨فيلم"], ["✨ايدي", "⋖━❲𖣂❳━⋗", "✨خيرني"], ["🥺 ¦ حذف الكيبورد"]], resize_keyboard=True)
-   await m.reply_photo(
-        photo=f"https://telegra.ph/file/2514530559cc173845e3f.jpg",
-        caption=f"""[ ●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━● •](https://t.me/AlmortagelTech)\n\n**اهـلا يـنـجـم.؟ **\n**مـرحبآ بـك انــا بــوت اقـوم بــتـشـغـيـل الاغــانــي فـي الـمـڪـالـمـه الـصـوتـية .🤔❤**\n**يمكنني التشغيل بصوت رائع وبدون اي مشاكل او تقطيع في الاغنيه**\n**اضفني الى مجموعتك وارفعني رول بشڪل مع ڪامل الصلاحيات صحيح**\n**لمعرفة استخدامي بشڪل صحيح اضغط علي زر الاوامر. 🤔💕**\n
-اضغط(/Almortagel12)لاظهار كيب المطور والاعضاء✨
-[ ●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━● •](https://t.me/AlmortagelTech)""", reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "مطور السورس. ⚡", url=f"https://t.me/Almortagel_12"),
-            ],[
-                    InlineKeyboardButton(
-                        "قناة السورس⚡", url=f"https://t.me/AlmortagelTech"),
-            ],[
-                    InlineKeyboardButton(
-                        " اضغط هنا لاضافتي الي مجموعتك🤖", url=f"https://t.me/Almortagel_music_bot?startgroup=true"),
-            ], 
-            ]
-        ),
-    )
-   await m.reply_text(f"صلي علي النبي وتبسم✨🌺", reply_markup=kep)
    if not check(m.from_user.id):
      await check_sub(app, m)
    if not is_user(m.from_user.id):
      add_user(m.from_user.id)
-     text = '🙍 شخص جديد دخل الى البوت !\n\n'
-     text += f'🎯 الأسم: {m.from_user.first_name}\n'
-     text += f'♻️ الايدي: {m.from_user.id}\n\n'
-     text += f'🌐 اصبح عدد المستخدمين: {len(get_users())}'
+     text = '➕ شخص جديد دخل الى البوت !\n\n'
+     text += f'👤 الأسم: {m.from_user.first_name}\n'
+     text += f'🔗 رابط حسابه: {m.from_user.mention}\n'
+     text += f'🆔 الايدي: {m.from_user.id}\n\n'
+     text += f'🌀 اصبح عدد المستخدمين: {len(get_users())}'
      reply_markup=InlineKeyboardMarkup (
       [[
         InlineKeyboardButton (m.from_user.first_name, user_id=m.from_user.id)
@@ -114,28 +60,21 @@ async def for_users (app,m):
      else:
         await app.send_message(int(r.get(f"bot_owner{bot_id}")), text, reply_markup=reply_markup)
      
+        
      
-@app.on_message(filters.command(["/Almortagel12"], "") & filters.private)
-async def for_users (app,m):
-   if check(m.from_user.id):
-     kep = ReplyKeyboardMarkup([["《صنع بوت》", "《حذف بوت》"], ["البوتات المصنوعه"], ["تعطيل المجاني", "تفعيل المجاني"], ["تعطيل التواصل", "تفعيل التواصل"], ["السورس"], ["الغاء"]], resize_keyboard=True)
-     return await m.reply_text(f"╮⦿ اهـلا بڪ عزيـزي المطـور الاساسـي  ⁽ {m.from_user.mention} ₎\n│⎋ اليك كيب التحكم بالبوت", reply_markup=Keyboard)
-   kep = ReplyKeyboardMarkup([["✨بنك قيصر", "⋖━❲𖣂❳━⋗", "✨ابراج"], ["✨ازكار", "⋖━❲𖣂❳━⋗", "✨اسال"], ["●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━●"], ["زخرفه", "⋖━❲𖣂❳━⋗", "✨زخارف"], ["✨حكمه", "⋖━❲𖣂❳━⋗", "✨معلومات"], ["✨العاب", "⋖━❲𖣂❳━⋗", "✨اغاني"], ["✨مهنتي", "⋖━❲𖣂❳━⋗", "✨افلام"], ["✨كت", "⋖━❲𖣂❳━⋗", "✨تويت"], ["✨رايك بصورتي", "⋖━❲𖣂❳━⋗", "✨حساب العمر"], ["●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━●"], ["✨حذف حسابي", "⋖━❲𖣂❳━⋗", "✨انصحني"], ["✨مميزات", "⋖━❲𖣂❳━⋗", "✨بوت"], ["✨نكته", "⋖━❲𖣂❳━⋗", "✨حروف"], ["✨صوره", "⋖━❲𖣂❳━⋗", "✨غنيلي"], ["✨انمي", "⋖━❲𖣂❳━⋗", "✨متحركه"], ["✨اقتباسات", "⋖━❲𖣂❳━⋗", "✨هيدرات"], ["●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━●"], ["✨صور بنات", "⋖━❲𖣂❳━⋗", "✨صور شباب"], ["✨قران", "⋖━❲𖣂❳━⋗", "✨الشيخ نقشبندي"], ["✨استوريهات", "⋖━❲𖣂❳━⋗", "✨فيلم"], ["✨ايدي", "⋖━❲𖣂❳━⋗", "✨خيرني"], ["🥺 ¦ حذف الكيبورد"]], resize_keyboard=True)
-   await m.reply_text(f"╮⦿ اهـلا بڪ عزيـزي ⁽ {m.from_user.mention} ₎\n│⎋ ✦مرحبا بك عزيزي في كيبور اعضاء بوتات ميوزك سورس قيصر ", reply_markup=keep)
    
-
-@app.on_message(filters.command("shehdhhtart") & filters.private, group=1)
+@app.on_message(filters.command("Almortagel12") & filters.private, group=1)
 async def keyboard_show(app,m):
     if check(m.from_user.id):
        await m.reply(f"• أهلا بك {m.from_user.mention} .\n• اليك لوحة التحكم الخاصة", reply_markup=Keyboard, quote=True)
 
 admins_commands = [
-   '《الاحصائيات》', '《تفعيل التواصل》',
-   '《تعطيل التواصل》', '《اذاعة بالتثبيت》', '《اذاعة》',
-   '《اذاعة بالتوجيه》', '《تفعيل الاشتراك》', '《تعطيل الاشتراك》',
-   '《ضع قناة الاشتراك》', '《حذف قناة الاشتراك》', '《قناة الاشتراك》','قائمه الأدمنيه',
+   'الاحصائيات', 'تفعيل التواصل',
+   'تعطيل التواصل', 'اذاعة بالتثبيت', 'اذاعة',
+   'اذاعة بالتوجيه', 'تفعيل الاشتراك', 'تعطيل الاشتراك',
+   'ضع قناة الاشتراك', 'حذف قناة الاشتراك', 'قناة الاشتراك','قائمه الأدمنيه',
    'المستخدمين', 'الأدمنية', 'الجروبات',
-   '《اذاعة بالمجموعات》','《اذاعة بالتثبيت بالمجموعات》', 'اخفاء الكيبورد'
+   'اذاعة بالمجموعات','اذاعة بالتثبيت بالمجموعات', 'اخفاء الكيبورد'
    ]
    
 owner_commands = [
@@ -143,26 +82,26 @@ owner_commands = [
 ]
 
 @app.on_message(filters.text & filters.private, group=2)
-async def keyboardforadmins(app, m):
+async def keyboard_for_admins(app, m):
   if m.text in admins_commands:
     if not check(m.from_user.id):
       return await m.reply('🌀 هذا الأمر لا يخصك', quote=True)
     else:
     
-      if m.text == '《الاحصائيات》':
+      if m.text == 'الاحصائيات':
         text = f'**👤 عدد المستخدمين: {len(get_users())}\n'
         text += f'📊 عدد المجموعات: {len(get_groups())}\n'
         text += f'🌀 عدد المشرفين: {len(get_admins())}**'
         await m.reply(text, quote=True)
         
-      if m.text == '《تفعيل التواصل》':
+      if m.text == 'تفعيل التواصل':
         if r.get(f'enable_twasol{bot_id}'):
           return await m.reply("• تم تفعيل التواصل مسبقاً", quote=True)
           
         await m.reply(f'**• بواسطة ⟨ {m.from_user.mention} ⟩\n• تم تفعيل التواصل بنجاح**', quote=True)
         r.set(f'enable_twasol{bot_id}', 1)
       
-      if m.text == '《تعطيل التواصل》':
+      if m.text == 'تعطيل التواصل':
         if not r.get(f'enable_twasol{bot_id}'):
           return await m.reply("• تم تعطيل التواصل مسبقاً", quote=True)
         await m.reply(f'**• بواسطة ⟨ {m.from_user.mention} ⟩\n• تم تعطيل التواصل بنجاح**', quote=True)
@@ -177,20 +116,20 @@ async def keyboardforadmins(app, m):
       if m.text == 'الجروبات':
         await m.reply_document(get_groups_backup(), quote=True)
       
-      if m.text == '《تفعيل الاشتراك》':
+      if m.text == 'تفعيل الاشتراك':
         if r.get(f"enable_force_subscribe{bot_id}"):
           return await m.reply('• تم تفعيل الاشتراك الاجباري مسبقاً',quote=True)
         await m.reply(f'**• بواسطة ⟨ {m.from_user.mention} ⟩\n• تم تفعيل الاشتراك بنجاح**', quote=True) 
         r.set(f"enable_force_subscribe{bot_id}", 1)
       
-      if m.text == '《تعطيل الاشتراك》':
+      if m.text == 'تعطيل الاشتراك':
         if not r.get(f"enable_force_subscribe{bot_id}"):
           return await m.reply('• تم تعطيل الاشتراك الاجباري مسبقاً',quote=True)
         await m.reply(f'**• بواسطة ⟨ {m.from_user.mention} ⟩\n• تم تعطيل الاشتراك بنجاح**', quote=True) 
         r.delete(f"enable_force_subscribe{bot_id}")
       
-      if m.text == '《ضع قناة الاشتراك》':
-        await m.reply("• ارسل معرف القناة العام مثال @AlmortagelTech", quote=True)
+      if m.text == 'ضع قناة الاشتراك':
+        await m.reply("• ارسل معرف القناة العام مثال @Y88F8", quote=True)
         r.set(f"{m.from_user.id}addchannel{m.chat.id}{bot_id}",1)
         r.delete(f"{m.from_user.id}addadmin{m.chat.id}{bot_id}")
         r.delete(f"{m.from_user.id}transfer{m.chat.id}{bot_id}")
@@ -201,13 +140,13 @@ async def keyboardforadmins(app, m):
         r.delete(f"{m.from_user.id}gbroad{m.chat.id}{bot_id}")
         r.delete(f"{m.from_user.id}gbroadpin{m.chat.id}{bot_id}")
       
-      if m.text == '《حذف قناة الاشتراك》':
+      if m.text == 'حذف قناة الاشتراك':
         if not r.get(f'force_channel{bot_id}'):
           return await m.reply("• لا توجد قناة اشتراك معينة", quote=True)
         await m.reply("• تم حذف قناة الاشتراك بنجاح", quote=True)
         r.delete(f'force_channel{bot_id}')
       
-      if m.text == '《قناة الاشتراك》':
+      if m.text == 'قناة الاشتراك':
         if not r.get(f'force_channel{bot_id}'):
           await m.reply('• لاتوجد قناة مضافة', quote=True)
         else:
@@ -224,10 +163,10 @@ async def keyboardforadmins(app, m):
               get = await app.get_chat(int(admin))
               text += f'• [{get.first_name}](tg://user?id={admin})\n'
             except:
-              text += f'• [@AlmortagelTech](tg://user?id={admin})\n'
+              text += f'• [@Y88F8](tg://user?id={admin})\n'
           await m.reply(text, quote=True)
           
-      if m.text == '《اذاعة》':
+      if m.text == 'اذاعة':
         await m.reply("• ارسل الإذاعة الآن ( صورة، ملصق، نص، متحركة، جهة اتصال، ملف )",quote=True)
         r.set(f"{m.from_user.id}broadcast{m.chat.id}{bot_id}",1)
         r.delete(f"{m.from_user.id}addadmin{m.chat.id}{bot_id}")
@@ -239,7 +178,7 @@ async def keyboardforadmins(app, m):
         r.delete(f"{m.from_user.id}gbroadpin{m.chat.id}{bot_id}")
         r.delete(f"{m.from_user.id}addchannel{m.chat.id}{bot_id}")
       
-      if m.text == '《اذاعة بالتثبيت》':
+      if m.text == 'اذاعة بالتثبيت':
         await m.reply("• ارسل الإذاعة الآن ( صورة، ملصق، نص، متحركة، جهة اتصال، ملف )",quote=True)
         r.set(f"{m.from_user.id}broadcastpin{m.chat.id}{bot_id}",1)
         r.delete(f"{m.from_user.id}addadmin{m.chat.id}{bot_id}")
@@ -251,7 +190,7 @@ async def keyboardforadmins(app, m):
         r.delete(f"{m.from_user.id}gbroadpin{m.chat.id}{bot_id}")
         r.delete(f"{m.from_user.id}addchannel{m.chat.id}{bot_id}")
         
-      if m.text == '《اذاعة بالتوجيه》':
+      if m.text == 'اذاعة بالتوجيه':
         await m.reply("• ارسل الإذاعة الآن ( صورة، ملصق، نص، متحركة، جهة اتصال، ملف )",quote=True)
         r.set(f"{m.from_user.id}broadcastfor{m.chat.id}{bot_id}",1)
         r.delete(f"{m.from_user.id}addadmin{m.chat.id}{bot_id}")
@@ -263,7 +202,7 @@ async def keyboardforadmins(app, m):
         r.delete(f"{m.from_user.id}gbroadpin{m.chat.id}{bot_id}")
         r.delete(f"{m.from_user.id}addchannel{m.chat.id}{bot_id}")
       
-      if m.text == '《اذاعة بالمجموعات》':
+      if m.text == 'اذاعة بالمجموعات':
         await m.reply("• ارسل الإذاعة الآن ( صورة، ملصق، نص، متحركة، جهة اتصال، ملف )",quote=True)
         r.set(f"{m.from_user.id}gbroad{m.chat.id}{bot_id}",1)
         r.delete(f"{m.from_user.id}addadmin{m.chat.id}{bot_id}")
@@ -275,7 +214,7 @@ async def keyboardforadmins(app, m):
         r.delete(f"{m.from_user.id}gbroadpin{m.chat.id}{bot_id}")
         r.delete(f"{m.from_user.id}addchannel{m.chat.id}{bot_id}")
       
-      if m.text == '《اذاعة بالتثبيت بالمجموعات》':
+      if m.text == 'اذاعة بالتثبيت بالمجموعات':
         await m.reply("• ارسل الإذاعة الآن ( صورة، ملصق، نص، متحركة، جهة اتصال، ملف )",quote=True)
         r.set(f"{m.from_user.id}gbroadpin{m.chat.id}{bot_id}",1)
         r.delete(f"{m.from_user.id}addadmin{m.chat.id}{bot_id}")
@@ -288,7 +227,7 @@ async def keyboardforadmins(app, m):
         r.delete(f"{m.from_user.id}addchannel{m.chat.id}{bot_id}")
       
       if m.text == 'اخفاء الكيبورد':
-        await m.reply("• تم اخفاء لوحة التحكم لاظهارها مجدداً ارسل /start",
+        await m.reply("• تم اخفاء لوحة التحكم لاظهارها مجدداً ارسل /Almortagel12",
         quote=True, reply_markup=ReplyKeyboardRemove (selective=True))
 
 
@@ -345,7 +284,7 @@ async def response_for_commands(app,m):
      return 
      
    if check(m.from_user.id):
-     if text == '《الغاء》':
+     if text == 'الغاء':
        await m.reply("• تم الغاء كل شيء", quote=True)
        r.delete(f"{m.from_user.id}addadmin{m.chat.id}{bot_id}")
        r.delete(f"{m.from_user.id}transfer{m.chat.id}{bot_id}")
@@ -413,7 +352,28 @@ async def response_for_commands(app,m):
        r.set(f"force_channel{bot_id}", channel)
        r.delete(f"{m.from_user.id}addchannel{m.chat.id}{bot_id}")
        await m.reply("• تم تعيين القناة بنجاح ", quote=True)
+       
+     
+     
+@app.on_message(filters.regex("^المطور$"), group=5)
+async def get_dev_about(app,m):
+   id = int(r.get(f"bot_owner{bot_id}"))
+   get = await app.get_chat(id)
+   text = f'• Name -» [{get.first_name}](tg://user?id={get.id})\n'
+   reply_markup= InlineKeyboardMarkup (
+     [[
+       InlineKeyboardButton (get.first_name, user_id=get.id)
+     ]]
+   )
+   if get.bio:
+     text += f'• Bio -» {get.bio}'
+   if get.photo:
+     async for photo in app.get_chat_photos(id, limit=1):
+       await m.reply_photo(photo.file_id, caption=text, reply_markup=reply_markup,quote=True)
    
+   else:
+     await m.reply(text, quote=True, disable_web_page_preview=True,
+     reply_markup=reply_markup)
        
 @app.on_message(filters.new_chat_members, group=6)
 async def add_group(app,m):
@@ -717,88 +677,12 @@ def get_groups_backup() -> str:
 	return 'groups.txt'
 
 if not r.get(f"bot_owner{bot_id}"):
-   owner = int(getenv("OWNER_ID", ""))
+   owner = int(input("Enter owner id : "))
    r.set(f"bot_owner{bot_id}", owner)
 
+'''
+@Y88F8
+@DevZaid
+'''
 
-@app.on_message(filters.command(["✨حذف حسابي"], ""))
-async def upbkgt(client: Client, message: Message):
-    await message.reply_photo(
-        photo=f"https://telegra.ph/file/50228546bd85a32fecd6e.jpg",
-        caption=f"""**اتفضل احذف او احذفي مع الف سلامه بس خد بالك او خدي بالك اتوحشني والله😂**""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "رابط الحذف🗑", url=f"https://t.me/LC6BOT"),
-            ],
-            ]
-        ),
-    )
-   
-@app.on_message(filters.command(["✨ايدي"], ""))
-async def upbkgt(client: Client, message: Message):
-    await message.reply_photo(
-        photo=f"https://telegra.ph/file/ae23083044ace5c97ff9a.jpg",
-        caption=f"""لروية الايدي الخاص بك اضغط علي الزر في الاسفل وانضم الي الجروب وثم اكتب في الجروب (ايدي) """,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        "رابط الجروب ", url=f"https://t.me/AlmortagelTech"),
-            ],
-            ]
-        ),
-    )
-    
-@app.on_message(filters.command(["⋖━❲𖣂❳━⋗"], ""))
-async def upbkgt(client: Client, message: Message):
-    await message.reply_photo(
-        photo=f"https://telegra.ph/file/2514530559cc173845e3f.jpg",
-        caption=f"""صلي علي النبي وتبسم ✨💖""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        " ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ", url=f"https://t.me/AlmortagelTech"),
-            ],
-            ]
-        ),
-    )
-    
-@app.on_message(filters.command(["●━◉⟞⟦ ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ ⟧⟝◉━●"], ""))
-async def upbkgt(client: Client, message: Message):
-    await message.reply_photo(
-        photo=f"https://telegra.ph/file/2514530559cc173845e3f.jpg",
-        caption=f"""صلي علي النبي وتبسم ✨💖""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        " ѕᴏụʀᴄᴇ ᴀʟᴍᴏʀᴛᴀɢᴇʟ", url=f"https://t.me/AlmortagelTech"),
-            ],
-            ]
-        ),
-    )
-    
-@app.on_message(filters.command(["《اضافه البوت لمجموعتك》"], ""))
-async def upbkgt(client: Client, message: Message):
-    await message.reply_photo(
-        photo=f"https://telegra.ph/file/2514530559cc173845e3f.jpg",
-        caption=f"""قم باضافتي لمجوموعتك لتشغيل الموسيقي والفديو في المحادثه الصوتيه انا من اسرع البوتات التي تستطيع تشغيل الاغاني تم تنصيبي في افضل سورس في التلجرام سورس القيصر قناه السورس @AlmortagelTech""",
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(
-                        " اضغط هنا لاضافتي الي مجموعتك", url=f"https://t.me/Almortagel_music_bot?startgroup=true"),
-            ],
-            ]
-        ),
-    )
-    
-@app.on_message(filters.command(["🥺 ¦ حذف الكيبورد"], ""))
-async def ahmed(_, message: Message): 
-    await message.reply_text(
-        text="""جتك قفله في دماغك 🥺""",            
-  reply_markup=ReplyKeyboardRemove()
-    )
+
