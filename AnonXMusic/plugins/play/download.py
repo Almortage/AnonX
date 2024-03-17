@@ -12,14 +12,13 @@ from pyrogram.types import Message, InputTextMessageContent
 from youtube_search import YoutubeSearch
 
 from AnonXMusic import app
-from AnonXMusic.plugins.play.filters import command
 
 def remove_if_exists(path):
     if os.path.exists(path):
         os.remove(path)
 
 
-@app.on_message(command(["/song", "بحث", "تحميل"]))
+@app.on_message(filters.command(["/song", "بحث", "تحميل"], ""))
 async def song_downloader(client, message: Message):
     query = " ".join(message.command[1:])
     m = await message.reply_text("<b>⇜ جـارِ البحث عـن المقطـع الصـوتـي . . .</b>")
