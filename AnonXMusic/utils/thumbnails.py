@@ -139,8 +139,8 @@ async def get_thumb(videoid):
             font4 = ImageFont.truetype('AnonXMusic/assets/font2.ttf', 35)
 
             image4 = ImageDraw.Draw(image2)
-            image4.text((10, 10), "ALMORTAGEL MUSIC", fill="white", font = font1, align ="left") 
-            image4.text((670, 150), "ALMORTAGEL PLAYING", fill="white", font = font2, stroke_width=2, stroke_fill="white", align ="left")
+            image4.text((10, 10), "Almortagel MUSIC", fill="white", font = font1, align ="left") 
+            image4.text((670, 150), "Almortagel PLAYING", fill="white", font = font2, stroke_width=2, stroke_fill="white", align ="left") 
 
             # title
             title1 = truncate(title)
@@ -151,12 +151,10 @@ async def get_thumb(videoid):
             views = f"Views : {views}"
             duration = f"Duration : {duration} Mins"
             channel = f"Channel : {channel}"
-            dev = f"DEV : ALMORTAGEL"
-            
+
             image4.text((670, 450), text=views, fill="white", font = font4, align ="left") 
             image4.text((670, 500), text=duration, fill="white", font = font4, align ="left") 
             image4.text((670, 550), text=channel, fill="white", font = font4, align ="left")
-            image4.text((670, 600), text=dev, fill="white", font = font4, align ="left") 
             
             image2 = ImageOps.expand(image2,border=20,fill=make_col())
             image2 = image2.convert('RGB')
