@@ -7,7 +7,7 @@ from pytgcalls.exceptions import NoActiveGroupCall
 
 import config
 from AnonXMusic import Apple, Resso, SoundCloud, Spotify, Telegram, YouTube, app
-from AnonXMusic.core.call import Mody
+from AnonXMusic.core.call import Anony
 from AnonXMusic.utils import seconds_to_min, time_to_seconds
 from AnonXMusic.utils.channelplay import get_channeplayCB
 from AnonXMusic.utils.decorators.language import languageCB
@@ -290,7 +290,7 @@ async def play_commnd(
             return await mystic.delete()
         else:
             try:
-                await mody.stream_call(url)
+                await Anony.stream_call(url)
             except NoActiveGroupCall:
                 await mystic.edit_text(_["black_9"])
                 return await app.send_message(
@@ -503,8 +503,8 @@ async def play_music(client, CallbackQuery, _):
     return await mystic.delete()
 
 
-@app.on_callback_query(filters.regex("modymousAdmin") & ~BANNED_USERS)
-async def modymous_check(client, CallbackQuery):
+@app.on_callback_query(filters.regex("AnonymousAdmin") & ~BANNED_USERS)
+async def Anonymous_check(client, CallbackQuery):
     try:
         await CallbackQuery.answer(
             "» ʀᴇᴠᴇʀᴛ ʙᴀᴄᴋ ᴛᴏ ᴜsᴇʀ ᴀᴄᴄᴏᴜɴᴛ :\n\nᴏᴘᴇɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ sᴇᴛᴛɪɴɢs.\n-> ᴀᴅᴍɪɴɪsᴛʀᴀᴛᴏʀs\n-> ᴄʟɪᴄᴋ ᴏɴ ʏᴏᴜʀ ɴᴀᴍᴇ\n-> ᴜɴᴄʜᴇᴄᴋ ᴀɴᴏɴʏᴍᴏᴜs ᴀᴅᴍɪɴ ᴘᴇʀᴍɪssɪᴏɴs.",
@@ -514,7 +514,7 @@ async def modymous_check(client, CallbackQuery):
         pass
 
 
-@app.on_callback_query(filters.regex("modyPlaylists") & ~BANNED_USERS)
+@app.on_callback_query(filters.regex("AnonyPlaylists") & ~BANNED_USERS)
 @languageCB
 async def play_playlists_command(client, CallbackQuery, _):
     callback_data = CallbackQuery.data.strip()
