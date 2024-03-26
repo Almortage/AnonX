@@ -67,20 +67,45 @@ async def get_thumb(videoid):
                     await f.close()
 
         youtube = Image.open(f"cache/thumb{videoid}.png")
-        circle = Image.open("AnonXMusic/assets/anonx.png")
         image1 = changeImageSize(1280, 720, youtube)
         
         image2 = image1.convert("RGBA")
         background = image2.filter(filter=ImageFilter.BoxBlur(30))
         enhancer = ImageEnhance.Brightness(background)
         background = enhancer.enhance(0.6)
-
-        image3 = changeImageSize(1280, 720, circle)
-        image5 = image3.convert("RGBA")
-        Image.alpha_composite(background, image5).save(f"cache/temp{videoid}.png")
-        image5.paste(image3, (50,70), mask = image3)
-        image5.paste(circle, (0,0), mask = circle)
         draw = ImageDraw.Draw(background)
+        
+        circle = Image.open("AnonXMusic/assets/anonx.png")
+
+            # changing circle color
+            im = circle
+            im = im.convert('RGBA')
+            color = make_col()
+
+            data = np.array(im)
+            red, green, blue, alpha = data.T
+
+            white_areas = (red == 255) & (blue == 255) & (green == 255)
+            data[..., :-1][white_areas.T] = color
+
+            im2 = Image.fromarray(data)
+            circle = im2
+            # done
+
+            image3 = image1.crop((280,0,1000,720))
+            lum_img = Image.new('L', [720,720] , 0)
+            draw = ImageDraw.Draw(lum_img)
+            draw.pieslice([(0,0), (720,720)], 0, 360, fill = 255, outline = "white")
+            img_arr = np.array(image3)
+            lum_img_arr = np.array(lum_img)
+            final_img_arr = np.dstack((img_arr,lum_img_arr))
+            image3 = Image.fromarray(final_img_arr)
+            image3 = image3.resize((600,600))
+            
+
+            image2.paste(image3, (50,70), mask = image3)
+            image2.paste(circle, (0,0), mask = circle)
+
         font = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         font2 = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
