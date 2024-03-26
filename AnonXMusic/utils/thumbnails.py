@@ -66,19 +66,17 @@ async def get_thumb(videoid):
                     await f.write(await resp.read())
                     await f.close()
 
-        youtube = Image.open(f"cache/thumb{videoid}.png")
-        image1 = changeImageSize(1280, 720, youtube)
-        
-        image2 = image1.convert("RGBA")
-        background = image2.filter(filter=ImageFilter.BoxBlur(30))
-        enhancer = ImageEnhance.Brightness(background)
-        background = enhancer.enhance(0.6)
-        draw = ImageDraw.Draw(background)
-        
-        circle = Image.open("AnonXMusic/assets/anonx.png")
-
+        youtube = Image.open(f"cache/thumb{videoid}.jpg")
+            image1 = changeImageSize(1280, 720, youtube)
+            image2 = image1.convert("RGBA")
+            background = image2.filter(filter=ImageFilter.BoxBlur(30))
+            enhancer = ImageEnhance.Brightness(background)
+            background = enhancer.enhance(0.6)
+            image2 = background
+                                                                                            
             # changing circle color
-            im = circle.convert('RGBA')
+            im = circle
+            im = im.convert('RGBA')
             color = make_col()
 
             data = np.array(im)
@@ -104,7 +102,6 @@ async def get_thumb(videoid):
 
             image2.paste(image3, (50,70), mask = image3)
             image2.paste(circle, (0,0), mask = circle)
-
         font = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         font2 = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
         arial = ImageFont.truetype("AnonXMusic/assets/font2.ttf", 30)
