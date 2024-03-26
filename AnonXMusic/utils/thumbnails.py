@@ -78,8 +78,7 @@ async def get_thumb(videoid):
         circle = Image.open("AnonXMusic/assets/anonx.png")
 
             # changing circle color
-            im = circle
-            im = im.convert('RGBA')
+            im = circle.convert('RGBA')
             color = make_col()
 
             data = np.array(im)
